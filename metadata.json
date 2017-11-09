@@ -5,6 +5,7 @@
   "summary": "Manages /etc/profile",
   "license": "CECILL-B",
   "source": "",
+  "data_provider": "hiera",
   "dependencies": [
 
   ],
