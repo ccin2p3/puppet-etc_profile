@@ -1,7 +1,12 @@
 ---
+lookup_options:
+  etc_profile::config:
+    merge:
+      strategy: deep
+      merge_hash_arrays: false
 etc_profile::config:
   file:
-    content: 'epp("etc_profile/site.epp")'
+    epp: 'etc_profile/site.epp'
   dir:
     ensure: directory
     purge: true

@@ -13,6 +13,7 @@ class etc_profile (
     * => $config['dir']
   }
   file { 'etc_profile file':
-    * => $config['file']
+    path    => $config['file']['path'],
+    content => epp($config['file']['epp']),
   }
 }
