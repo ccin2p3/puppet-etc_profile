@@ -10,8 +10,9 @@
 #   }
 define etc_profile::entry(
   Hash $config,
-  Etc_Profile::EntryPath $path = $name,
+  Etc_profile::Entrypath $path = $name,
 ) {
+  include ::etc_profile
   file { "etc_profile entry ${name}":
     path => "${etc_profile::config[dir][path]}/${path}.sh",
     *    => $config,

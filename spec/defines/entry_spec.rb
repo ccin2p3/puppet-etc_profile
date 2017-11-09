@@ -4,8 +4,9 @@ describe 'etc_profile::entry' do
   let(:title) { 'namevar' }
   let(:params) do
     {
+      name: 'foo',
       config: {
-        'name' => 'foo',
+        'mode' => '1777',
       },
     }
   end
@@ -14,10 +15,12 @@ describe 'etc_profile::entry' do
     context "on #{os}" do
       let(:facts) { os_facts }
 
-      it { is_expected.to contain_file('etc_profile dir') }
-      it { is_expected.to contain_file('etc_profile dir').with({
-            path: '/etc/profile.d/foo.sh',
-        })
+      it { is_expected.to contain_file('etc_profile entry foo') }
+      it {
+        is_expected.to contain_file('etc_profile entry foo').with(
+          path: '/etc/profile.d/site/foo.sh',
+          mode: '1777',
+        )
       }
       it { is_expected.to compile }
     end

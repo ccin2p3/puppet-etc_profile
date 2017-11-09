@@ -7,7 +7,7 @@
 # @example
 #   include etc_profile
 class etc_profile (
-  Hash $config
+  Hash $config,
 ) {
   file { 'etc_profile dir':
     * => $config['dir']
