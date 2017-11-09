@@ -1,0 +1,6 @@
+---
+etc_profile::config:
+  file:
+    path: /etc/profile.d/site.sh
+  dir:
+    path: /etc/profile.d/site

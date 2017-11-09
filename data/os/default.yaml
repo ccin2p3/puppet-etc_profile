@@ -1,0 +1,7 @@
+---
+etc_profile::config:
+  file:
+    content: 'epp("etc_profile/site.epp")'
+  dir:
+    ensure: directory
+    purge: true
