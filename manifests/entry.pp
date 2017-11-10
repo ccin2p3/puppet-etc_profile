@@ -14,8 +14,9 @@ define etc_profile::entry(
 ) {
   include ::etc_profile
   file { "etc_profile entry ${name}":
-    path => "${etc_profile::config[dir][path]}/${path}.sh",
-    *    => $config,
+    path         => "${etc_profile::config[dir][path]}/${path}.sh",
+    *            => $config,
+    validate_cmd => '/bin/sh -n %',
   }
 }
 
