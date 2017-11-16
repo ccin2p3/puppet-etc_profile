@@ -19,7 +19,7 @@ define etc_profile::entry(
       file { "etc_profile sh entry ${name}":
         path         => "${etc_profile::sh::config[dir][path]}/${path}.sh",
         *            => $config,
-        validate_cmd => '/bin/sh -n %',
+        validate_cmd => '/bin/sh -n "%"',
       }
     }
     'csh': {
@@ -27,7 +27,7 @@ define etc_profile::entry(
       file { "etc_profile csh entry ${name}":
         path         => "${etc_profile::csh::config[dir][path]}/${path}.csh",
         *            => $config,
-        validate_cmd => '/bin/csh -n %',
+        validate_cmd => '/bin/csh -n "%"',
       }
     }
     default: {
