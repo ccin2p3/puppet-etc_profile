@@ -10,13 +10,28 @@
 #   }
 define etc_profile::entry(
   Hash $config,
+  Etc_profile::Entrytype $type = 'sh',
   Etc_profile::Entrypath $path = $name,
 ) {
   include ::etc_profile
-  file { "etc_profile entry ${name}":
-    path         => "${etc_profile::config[dir][path]}/${path}.sh",
-    *            => $config,
-    validate_cmd => '/bin/sh -n %',
+  case $type {
+    'sh': {
+      file { "etc_profile sh entry ${name}":
+        path         => "${etc_profile::config[dir][path]}/${path}.sh",
+        *            => $config,
+        validate_cmd => '/bin/sh -n %',
+      }
+    }
+    'csh': {
+      file { "etc_profile csh entry ${name}":
+        path         => "${etc_profile::config[dir][path]}/${path}.csh",
+        *            => $config,
+        validate_cmd => '/bin/csh -n %',
+      }
+    }
+    default: {
+      fail('unsupported type')
+    }
   }
 }
 
