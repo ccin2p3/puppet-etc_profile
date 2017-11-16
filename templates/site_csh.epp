@@ -1,6 +1,6 @@
 # site-wide system profiles managed by puppet
 
-if (-e <%= $etc_profile::csh::config['dir']['path'] %> && `/bin/ls <%= $etc_profile::csh::config['dir']['path'] %>` != "") then
+if (-e <%= $etc_profile::csh::config['dir']['path'] %> && `/bin/echo <%= $etc_profile::csh::config['dir']['path'] %>/*.csh` != "<%= $etc_profile::csh::config['dir']['path'] %>/*.csh") then
   foreach FILE (`/bin/ls <%= $etc_profile::csh::config['dir']['path'] %>/*.csh`)
     source $FILE;
   end;
