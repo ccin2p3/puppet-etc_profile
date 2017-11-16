@@ -14,8 +14,8 @@
 
 ## Description
 
-This module manages the Bourne shell system profiles.
-It does not handle existing profiles handled by the OS.
+This module manages the Bourne and C shell system login profiles.
+It does not overwrite existing profiles handled by the OS.
 
 ## Setup
 
@@ -23,9 +23,22 @@ It does not handle existing profiles handled by the OS.
 
 Complete list of resources managed by this module:
 
+#### RedHat OS families
+
+* `File['/etc/profile.d/site.sh']`
+* `File['/etc/profile.d/site.csh']`
+* `File['/etc/profile.d/site']` (purged)
+* `File['/etc/profile.d/site/*.sh']`
+* `File['/etc/profile.d/site/*.csh']`
+
+#### Debian OS families
+
 * `File['/etc/profile.d/site.sh']`
 * `File['/etc/profile.d/site']` (purged)
 * `File['/etc/profile.d/site/*.sh']`
+* `File['/etc/csh/login.d/site.csh']`
+* `File['/etc/csh/login.d/site']` (purged)
+* `File['/etc/csh/login.d/site/*.csh']`
 
 ### Synopsis
 
@@ -49,20 +62,21 @@ site_profile::entry {'openstack':
 
 ## Reference
 
-### Class `site_profile`
+### Classes `etc_profile::sh` and `etc_profile::csh`
 
-This class is **usually never called by itself**, as it only sets up the logic to include `site_profile::entry`'s.
-The **only reason to call it** is to **change the defaults**. It is preferred to open an issue if your OS isn't supported, and we'll add it to the module's data.
+These are **usually never called on their own**, as tehy only set up the requirements for `site_profile::entry`'s.
+The **only reason to call them** is to **change the OS defaults**. It is preferred to open an issue if your OS isn't supported, and we'll add it to the module's [data](data).
 
 ### Defined Type `site_profile::entry`
 
 This is the main resource you'll be using to add new profile entries.
-A profile entry is merely a Bourne shell script that will be added to system profiles.
+A profile entry is merely a Bourne or C shell script that will be added to system profiles.
 
 #### Parameters
 
 * `name` String (Alphanum, Namevar) name of the resource
 * `config` Hash to add additional `File` parameters, *e.g.* `mode`
+* `type` Enum[sh|csh] script type
 
 #### Examples
 

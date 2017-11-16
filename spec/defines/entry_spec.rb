@@ -1,4 +1,7 @@
 require 'spec_helper'
+require 'spec_values'
+
+os_values = @os_values
 
 describe 'etc_profile::entry' do
   let(:title) { 'namevar' }
@@ -18,7 +21,7 @@ describe 'etc_profile::entry' do
       it { is_expected.to contain_file('etc_profile sh entry foo') }
       it {
         is_expected.to contain_file('etc_profile sh entry foo').with(
-          path: '/etc/profile.d/site/foo.sh',
+          path: "#{os_values[os_facts[:os]['family']][:sh][:dir][:path]}/foo.sh",
           mode: '1777',
         )
       }
@@ -33,9 +36,10 @@ describe 'etc_profile::entry' do
           config: {},
         }
       end
+
       it {
         is_expected.to contain_file('etc_profile csh entry foo').with(
-          path: '/etc/profile.d/site/foo.csh',
+          path: "#{os_values[os_facts[:os]['family']][:csh][:dir][:path]}/foo.csh",
         )
       }
       it { is_expected.to compile }
@@ -49,7 +53,8 @@ describe 'etc_profile::entry' do
           config: {},
         }
       end
-      it { is_expected.to compile.and_raise_error(/parameter 'type' expects a match/) }
+
+      it { is_expected.to compile.and_raise_error(%r{parameter 'type' expects a match}) }
     end
   end
 end

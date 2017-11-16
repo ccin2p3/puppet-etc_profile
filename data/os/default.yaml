@@ -1,12 +1,18 @@
 ---
 lookup_options:
-  etc_profile::config:
+  '^etc_profile::(.*)::config$':
     merge:
       strategy: deep
       merge_hash_arrays: false
-etc_profile::config:
+etc_profile::sh::config:
   file:
-    epp: 'etc_profile/site.epp'
+    epp: 'etc_profile/site_sh.epp'
+  dir:
+    ensure: directory
+    purge: true
+etc_profile::csh::config:
+  file:
+    epp: 'etc_profile/site_csh.epp'
   dir:
     ensure: directory
     purge: true

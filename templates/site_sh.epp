@@ -1,0 +1,11 @@
+# site-wide system profiles managed by puppet
+
+if [ -d <%= $etc_profile::sh::config['dir']['path'] %> ]; then
+  for i in <%= $etc_profile::sh::config['dir']['path'] %>/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+

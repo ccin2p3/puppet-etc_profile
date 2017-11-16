@@ -13,18 +13,19 @@ define etc_profile::entry(
   Etc_profile::Entrytype $type = 'sh',
   Etc_profile::Entrypath $path = $name,
 ) {
-  include ::etc_profile
   case $type {
     'sh': {
+      include ::etc_profile::sh
       file { "etc_profile sh entry ${name}":
-        path         => "${etc_profile::config[dir][path]}/${path}.sh",
+        path         => "${etc_profile::sh::config[dir][path]}/${path}.sh",
         *            => $config,
         validate_cmd => '/bin/sh -n %',
       }
     }
     'csh': {
+      include ::etc_profile::csh
       file { "etc_profile csh entry ${name}":
-        path         => "${etc_profile::config[dir][path]}/${path}.csh",
+        path         => "${etc_profile::csh::config[dir][path]}/${path}.csh",
         *            => $config,
         validate_cmd => '/bin/csh -n %',
       }

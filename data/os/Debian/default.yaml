@@ -1,6 +1,11 @@
 ---
-etc_profile::config:
+etc_profile::sh::config:
   file:
     path: /etc/profile.d/site.sh
   dir:
     path: /etc/profile.d/site
+etc_profile::csh::config:
+  file:
+    path: /etc/csh/login.d/site.csh
+  dir:
+    path: /etc/csh/login.d/site
