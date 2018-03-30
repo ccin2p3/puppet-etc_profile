@@ -10,9 +10,11 @@ etc_profile::sh::config:
   dir:
     ensure: directory
     purge: true
+    recurse: true
 etc_profile::csh::config:
   file:
     epp: 'etc_profile/site_csh.epp'
   dir:
     ensure: directory
     purge: true
+    recurse: true
