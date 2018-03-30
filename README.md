@@ -1,5 +1,6 @@
-
 # etc_profile
+
+[![Build Status](https://travis-ci.org/ccin2p3/puppet-etc_profile.png?branch=master)](https://travis-ci.org/ccin2p3/puppet-etc_profile)
 
 #### Table of Contents
 
