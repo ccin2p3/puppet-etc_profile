@@ -4,7 +4,7 @@
   "author": "faxm0dem",
   "summary": "Manages /etc/profile",
   "license": "CECILL-B",
-  "source": "",
+  "source": "https://github.com/ccin2p3/puppet-etc_profile",
   "dependencies": [
 
   ],
