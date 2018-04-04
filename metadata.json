@@ -1,6 +1,6 @@
 {
   "name": "ccin2p3-etc_profile",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "faxm0dem",
   "summary": "Manages /etc/profile",
   "license": "CECILL-B",

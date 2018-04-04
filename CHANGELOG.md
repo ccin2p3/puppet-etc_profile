@@ -1,5 +1,9 @@
 # Changelog
 
+## 2018-04-04 Release 0.2.3
+
+* ensure site directory is purged
+
 ## 2017-11-16 Release 0.2.2
 
 * fix csh script
